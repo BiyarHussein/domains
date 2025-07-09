@@ -20,10 +20,14 @@ jobs:
     environment: production
     steps:
       - uses: actions/checkout@v4
+
       - uses: gacts/install-dnscontrol@v1
+
       - name: Create credentials file
-        run: echo '{"cloudflare":{"TYPE":"CLOUDFLAREAPI","accountid":"$CF_ID","apitoken":"$CF_TOKEN"}}' > ./creds.json
-      - run: dnscontrol push
+        run: |
+          echo "{\"cloudflare\":{\"TYPE\":\"CLOUDFLAREAPI\",\"apitoken\":\"$CF_TOKEN\"}}" > ./creds.json
         env:
-          CF_ID: ${{ secrets.CF_ACCOUNT_ID }}
           CF_TOKEN: ${{ secrets.CF_API_TOKEN }}
+
+      - name: Push DNS records
+        run: dnscontrol push
