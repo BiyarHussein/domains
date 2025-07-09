@@ -26,5 +26,5 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
-        with: {path: sites/is-an.app}
+        with: {path: sites/biyarhussein.dev}
       - {uses: actions/deploy-pages@v4, id: deployment}
